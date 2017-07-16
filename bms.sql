@@ -1,18 +1,18 @@
 use db_bms;
 
 create table if not exists publishers(
-	publisherID int auto_increment,
-	publisherName varchar (30) NOT NULL,
-	primary key (publisherID)
-) 
-;
+	id int auto_increment,
+	name varchar (30) NOT NULL,
+	primary key (id)
+);
+
 create table  if not exists authors (
-	authorID int auto_increment,
+	id int auto_increment,
 	firstName varchar (20) NOT NULL,
 	lastName varchar (30) NOT NULL,
-	primary key (authorID)
-) 
-;
+	primary key (id)
+);
+
 create table  if not exists titles(
 	isbn varchar (20) NOT NULL,
 	title varchar (100) NOT NULL,
@@ -22,27 +22,27 @@ create table  if not exists titles(
 	imageFile varchar (20) NOT NULL,
 	price float NOT NULL,
 	foreign key (publisherID)
-		references publishers (publisherID), 
+		references publishers (id), 
 	primary key (isbn)
-) 
-;
-create table  if not exists authorISBN(
-	authorID int NOT NULL,
+);
+
+create table if not exists authorISBN(
+	id int NOT NULL,
 	isbn varchar (20) NOT NULL,
-	foreign key (authorID)
-		references authors (authorID), 
+	foreign key (id)
+		references authors (id), 
 	foreign key (isbn)
 		references titles (isbn)
 ) 
 ;
-create table  if not exists bookusers
+create table  if not exists users
 (
-    userId      int               auto_increment,
-    account     varchar(20)           not null,
-    password    varchar(20)           not null,
-    name        varchar(20)           not null,
-    createTime  datetime             ,
-    primary key (userId)
+    id int auto_increment,
+    account     varchar(20) not null,
+    password    varchar(20) not null,
+    name        varchar(20) not null,
+    createTime  datetime default now(),
+    primary key (id)
 );
 
 insert into publishers (publisherName) values ('Prentice Hall')
@@ -184,4 +184,4 @@ insert into authorISBN (authorID,isbn) values (3,'0130284181')
 insert into authorISBN (authorID,isbn) values (4,'0130895601')
 ;
 
-insert into bookusers (account, password, name, createTime)values('admin', 'admin', 'administrator', now());
+insert into users (account, password, name, createTime)values('admin', 'admin', 'administrator', now());

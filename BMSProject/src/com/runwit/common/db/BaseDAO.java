@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseDAO<T> {
+public class BaseDAO {
 	protected DbConnection dbConn;
 	static Logger logger = Logger.getLogger(BaseDAO.class);
 
@@ -74,7 +74,7 @@ public class BaseDAO<T> {
 		}
 	}
 	
-	public List<T> queryBySQL(String sql, IRowMapper<T> mapper) {
+	public <T> List<T> queryBySQL(String sql, IRowMapper<T> mapper) {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -101,7 +101,7 @@ public class BaseDAO<T> {
 		return list;
 	}
 	
-	public List<T> queryBySQL(String sql, IParamBinding bind, IRowMapper<T> mapper) {
+	public <T> List<T> queryBySQL(String sql, IParamBinding bind, IRowMapper<T> mapper) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

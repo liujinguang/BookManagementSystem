@@ -11,7 +11,7 @@ import com.runwit.common.db.IParamBinding;
 import com.runwit.common.db.IRowMapper;
 import com.runwit.common.util.ParamUtil;
 
-public class UserDAO extends BaseDAO<User> {
+public class UserDAO extends BaseDAO {
 	public void save(final User user) {
 		String sql = "insert into users (account, password, name) values (?, ?, ?) ";
 		updateBySQL(sql, new IParamBinding() {
