@@ -1,4 +1,6 @@
-use db_bms;
+#source D:/github/BookManagementSystem/bms.sql
+
+use db_bookms;
 
 create table if not exists publishers(
 	id int auto_increment,
@@ -45,9 +47,9 @@ create table  if not exists users
     primary key (id)
 );
 
-insert into publishers (publisherName) values ('Prentice Hall')
+insert into publishers (name) values ('Prentice Hall')
 ;
-insert into publishers (publisherName) values ('Prentice Hall PTG')
+insert into publishers (name) values ('Prentice Hall PTG')
 ;
 
 insert into authors (firstName,lastName) values ('Harvey','Deitel')
@@ -94,94 +96,94 @@ insert into titles (isbn,title,editionNumber,copyright,publisherID,imageFile,pri
 insert into titles (isbn,title,editionNumber,copyright,publisherID,imageFile,price) values ('0130895601','Advanced Java 2 Platform How to Program',1,'2002',1,'advjhtp1.jpg',69.95)
 ;
 
-insert into authorISBN (authorID,isbn) values (1,'0130895725')
+insert into authorISBN (id,isbn) values (1,'0130895725')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0132261197')
+insert into authorISBN (id,isbn) values (1,'0132261197')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130895717')
+insert into authorISBN (id,isbn) values (1,'0130895717')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0135289106')
+insert into authorISBN (id,isbn) values (1,'0135289106')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0139163050')
+insert into authorISBN (id,isbn) values (1,'0139163050')
 ;
-insert into authorISBN (authorID,isbn) values (1,'013028419x')
+insert into authorISBN (id,isbn) values (1,'013028419x')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130161438')
+insert into authorISBN (id,isbn) values (1,'0130161438')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130856118')
+insert into authorISBN (id,isbn) values (1,'0130856118')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130125075')
+insert into authorISBN (id,isbn) values (1,'0130125075')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0138993947')
+insert into authorISBN (id,isbn) values (1,'0138993947')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130852473')
+insert into authorISBN (id,isbn) values (1,'0130852473')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130829277')
+insert into authorISBN (id,isbn) values (1,'0130829277')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0134569555')
+insert into authorISBN (id,isbn) values (1,'0134569555')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130829293')
+insert into authorISBN (id,isbn) values (1,'0130829293')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130284173')
+insert into authorISBN (id,isbn) values (1,'0130284173')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130284181')
+insert into authorISBN (id,isbn) values (1,'0130284181')
 ;
-insert into authorISBN (authorID,isbn) values (1,'0130895601')
-;
-
-insert into authorISBN (authorID,isbn) values (2,'0130895725')
-;
-insert into authorISBN (authorID,isbn) values (2,'0132261197')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130895717')
-;
-insert into authorISBN (authorID,isbn) values (2,'0135289106')
-;
-insert into authorISBN (authorID,isbn) values (2,'0139163050')
-;
-insert into authorISBN (authorID,isbn) values (2,'013028419x')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130161438')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130856118')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130125075')
-;
-insert into authorISBN (authorID,isbn) values (2,'0138993947')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130852473')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130829277')
-;
-insert into authorISBN (authorID,isbn) values (2,'0134569555')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130829293')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130284173')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130284181')
-;
-insert into authorISBN (authorID,isbn) values (2,'0130895601')
+insert into authorISBN (id,isbn) values (1,'0130895601')
 ;
 
-
-insert into authorISBN (authorID,isbn) values (3,'013028419x')
+insert into authorISBN (id,isbn) values (2,'0130895725')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0130161438')
+insert into authorISBN (id,isbn) values (2,'0132261197')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0130856118')
+insert into authorISBN (id,isbn) values (2,'0130895717')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0134569555')
+insert into authorISBN (id,isbn) values (2,'0135289106')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0130829293')
+insert into authorISBN (id,isbn) values (2,'0139163050')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0130284173')
+insert into authorISBN (id,isbn) values (2,'013028419x')
 ;
-insert into authorISBN (authorID,isbn) values (3,'0130284181')
+insert into authorISBN (id,isbn) values (2,'0130161438')
+;
+insert into authorISBN (id,isbn) values (2,'0130856118')
+;
+insert into authorISBN (id,isbn) values (2,'0130125075')
+;
+insert into authorISBN (id,isbn) values (2,'0138993947')
+;
+insert into authorISBN (id,isbn) values (2,'0130852473')
+;
+insert into authorISBN (id,isbn) values (2,'0130829277')
+;
+insert into authorISBN (id,isbn) values (2,'0134569555')
+;
+insert into authorISBN (id,isbn) values (2,'0130829293')
+;
+insert into authorISBN (id,isbn) values (2,'0130284173')
+;
+insert into authorISBN (id,isbn) values (2,'0130284181')
+;
+insert into authorISBN (id,isbn) values (2,'0130895601')
 ;
 
 
-insert into authorISBN (authorID,isbn) values (4,'0130895601')
+insert into authorISBN (id,isbn) values (3,'013028419x')
+;
+insert into authorISBN (id,isbn) values (3,'0130161438')
+;
+insert into authorISBN (id,isbn) values (3,'0130856118')
+;
+insert into authorISBN (id,isbn) values (3,'0134569555')
+;
+insert into authorISBN (id,isbn) values (3,'0130829293')
+;
+insert into authorISBN (id,isbn) values (3,'0130284173')
+;
+insert into authorISBN (id,isbn) values (3,'0130284181')
+;
+
+
+insert into authorISBN (id,isbn) values (4,'0130895601')
 ;
 
 insert into users (account, password, name, createTime)values('admin', 'admin', 'administrator', now());

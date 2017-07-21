@@ -18,29 +18,29 @@ table caption {
 	function checkForm(myForm) {
 		var msg = "";
 		var setFocused = false;
-		
+
 		if (myForm.account.value == "") {
 			msg += "账号不能为空\n";
-			
+
 			myForm.account.focus();
-			
+
 			setFocused = true;
 		}
-		
+
 		if (myForm.password.value == "") {
 			msg += "密码不能为空";
-			
+
 			myForm.password.focus();
-			
+
 			setFocused = true;
 		}
-		
+
 		if (msg != "") {
 			alert(msg);
-			
+
 			return false;
 		}
-		
+
 		return true;
 	}
 </script>
@@ -52,25 +52,36 @@ table caption {
 				src="<%=request.getContextPath()%>/images/head.jpg"></td>
 		</tr>
 	</table>
-	<form action="" name="form1" method="post" onsubmit="return checkForm(this)">
+	<form action="<%=request.getContextPath()%>/processLogin.jsp" name="form1" method="post"
+		onsubmit="return checkForm(this)">
 		<table align="center">
 			<caption>用户登录</caption>
+
+			<%
+				Object obj = request.getAttribute("errorMessage");
+				if (obj != null) {
+			%>
 			<tr>
-				<td colspan="2"><span style="color: red; font-weight: bold">a</span>
+				<td colspan="2"><span style="color: red; font-weight: bold"><%=obj%></span>
 				</td>
 			</tr>
+			<%
+				}
+			%>
 			<tr>
 				<td>用户账号</td>
 				<td><input type="text" name="account" style="width: 150px"></td>
 			</tr>
 			<tr>
 				<td>用户密码</td>
-				<td><input type="text" name="password" style="width: 150px"></td>
+				<td><input type="password" name="password" style="width: 150px"></td>
 			</tr>
 
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="登录">
-					<input type="reset" value="清空"></td>
+				<td colspan="2" align="center">
+				    <input type="submit" value="登录">
+					<input type="reset" value="清空">
+				</td>
 			</tr>
 		</table>
 	</form>

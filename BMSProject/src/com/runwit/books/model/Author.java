@@ -1,14 +1,15 @@
 package com.runwit.books.model;
 
 public class Author {
-	public Author(String firstName, String lastName) {
+	public Author(int id, String firstName, String lastName) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	public Author() {
-		
+
 	}
 
 	public int getId() {

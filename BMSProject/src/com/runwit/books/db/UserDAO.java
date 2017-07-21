@@ -70,7 +70,7 @@ public class UserDAO extends BaseDAO {
 			@Override
 			public void bindParam(PreparedStatement pstmt) throws SQLException {
 				pstmt.setString(1, account);
-				pstmt.setString(1, password);
+				pstmt.setString(2, password);
 			}
 		}, new UserRowMapper());
 		
