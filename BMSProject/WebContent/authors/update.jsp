@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	AuthorDAO dao = new AuthorDAO();
 	String firstName = request.getParameter("firstName");
 	String lastName = request.getParameter("lastName");

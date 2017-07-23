@@ -24,7 +24,7 @@
 			     <a href="<%=request.getContextPath() %>/publishers/index.jsp">出版社管理</a> |
 			     <a href="<%=request.getContextPath() %>/authors/index.jsp">图书管理</a> |
 			     <a href="<%=request.getContextPath() %>/authors/index.jsp">图书查询</a> |
-			     <a href="<%=request.getContextPath() %>/authors/index.jsp">用户管理</a>
+			     <a href="<%=request.getContextPath() %>/users/index.jsp">用户管理</a>
 			</td>
 		</tr>
 

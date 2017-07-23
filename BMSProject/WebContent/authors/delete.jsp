@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
+	request.setCharacterEncoding("UTF-8");
 	AuthorDAO dao = new AuthorDAO();
 	dao.delete(Integer.parseInt(request.getParameter("id")));
 	response.sendRedirect("index.jsp");

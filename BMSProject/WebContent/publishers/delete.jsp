@@ -3,8 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("UTF-8");
 	PublisherDAO dao = new PublisherDAO();
-    dao.delete(Integer.parseInt(request.getParameter("id")));
-    
-    response.sendRedirect("index.jsp");
+	dao.delete(Integer.parseInt(request.getParameter("id")));
+
+	response.sendRedirect("index.jsp");
 %>
