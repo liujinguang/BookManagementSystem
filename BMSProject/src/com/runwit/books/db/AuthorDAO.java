@@ -24,9 +24,9 @@ public class AuthorDAO extends BaseDAO {
 	}
 
 	public void update(Author author) {
-		String sql = String.format("update authors set firstName=%s, lastName=%s where id=%d", author.getFirstName(),
+		String sql = String.format("update authors set firstName=\"%s\", lastName=\"%s\" where id=%d", author.getFirstName(),
 				author.getLastName(), author.getId());
-
+		
 		updateBySQL(sql);
 	}
 

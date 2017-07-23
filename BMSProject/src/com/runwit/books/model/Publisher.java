@@ -5,8 +5,9 @@ public class Publisher {
 		super();
 	}
 
-	public Publisher(String name) {
+	public Publisher(int id, String name) {
 		super();
+		this.id = id;
 		this.name = name;
 	}
 
@@ -24,6 +25,11 @@ public class Publisher {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "id: " + id + ", name" + name;
 	}
 
 	private int id;
