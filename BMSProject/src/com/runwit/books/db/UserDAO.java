@@ -44,6 +44,14 @@ public class UserDAO extends BaseDAO {
 		updateBySQL(sql);
 	}
 	
+	public User get(int userId) {
+		String sql = "select * from users where id=" + userId;
+
+		List<User> users = queryBySQL(sql, new UserRowMapper());
+
+		return users.size() == 0 ? null : users.get(0);
+	}
+	
 	class UserRowMapper implements IRowMapper<User> {
 
 		@Override

@@ -9,11 +9,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>朗慧图书管理信息系统-用户管理</title>
 <link rel="stylesheet" href="../inc/main.css" type="text/css">
+<script type="text/javascript" src="../inc/main.js"></script>
 </head>
 <body>
 	<%@include file="../inc/head.jsp"%>
 	<form action="add.jsp" method="post" name="form1"
-		onsubmit="return checkForm(this)">
+		onsubmit="return checkUserForm(this)">
 		<table align="center" width="980">
 			<tr>
 				<td>姓名 <input type="text" name="name" size=20> 账号<input
@@ -56,11 +57,23 @@
 			<td><%=user.getName()%></td>
 			<td><%=user.getAccount()%></td>
 			<td><%=user.getCreateTime()%></td>
-			<td><a>修改</a>|<a>删除</a></td>
+			<td><a href="modify.jsp?id=<%=user.getId()%>">修改</a>|<a
+				href="delete.jsp?id=<%=user.getId()%>"
+				onclick="return confirm('确定要删除该记录[用户ID: <%=user.getId()%>]')">删除</a></td>
 		</tr>
 		<%
 			}
 		%>
+		<tr>
+			<td colspan="8" align="right">记录总数<%=recordCount%>条 每页显示<%=pageSize%>条 
+				 当前页/总页数 <%=pageUtil.getCurrentPage()%>/<%=pageUtil.getPageCount() %>
+				<a href="index.jsp?page=1">首页</a>
+				<a href="index.jsp?page=<%=pageUtil.getPrevPage()%>">上页</a>
+				<a href="index.jsp?page=<%=pageUtil.getNextPage()%>">下页</a>
+				跳到<input type="text" size="3" id="newPage">页
+				<input type="button" value="Go" onclick="return processGoPage()">
+			</td>
+		</tr>
 	</table>
 </body>
 </html>
