@@ -17,7 +17,7 @@
 		%>
 		<tr style="background: url('../images/headbg.jpg') repeat-x;">
 			<td>
-			         欢迎<%=loginName%> [<a href="">更改密码</a> | <a href="<%=request.getContextPath() %>/logout.jsp">退出系统</a>]
+			         欢迎 <%=loginName%> [<a href="">更改密码</a> | <a href="<%=request.getContextPath() %>/logout.jsp">退出系统</a>]
 			</td>
 			<td align="right" height="25">
 			     <a href="<%=request.getContextPath() %>/authors/index.jsp">作者管理</a> |
