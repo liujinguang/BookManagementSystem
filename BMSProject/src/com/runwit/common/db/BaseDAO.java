@@ -20,7 +20,7 @@ public class BaseDAO {
 	}
 
 	/**
-	 * execute add, delte update operations
+	 * execute add, delete update operations
 	 * 
 	 * @param sql
 	 * @return
@@ -43,6 +43,33 @@ public class BaseDAO {
 			dbConn.closeStatement(stat);
 			dbConn.closeConnection(conn);
 		}
+	}
+	
+	public boolean executeInConnection(IConnectionCreator connCreator) {
+		Connection conn = null;
+		
+		try {
+			conn = dbConn.getConnection();
+			conn.setAutoCommit(false);
+			
+			boolean res = connCreator.doInConnection(conn);
+			if (!res) {
+				dbConn.rollbackTrans(conn);
+				
+				return false;
+			} else {
+				dbConn.commitTrans(conn);
+				
+				return true;
+			}
+		} catch (SQLException e) {
+			logger.debug("SQL Exception" + e);
+			dbConn.rollbackTrans(conn);
+		} finally {
+			dbConn.closeConnection(conn);
+		}
+		
+		return false;
 	}
 
 	/**
@@ -130,4 +157,32 @@ public class BaseDAO {
 		return list;
 	}
 	
+	
+	public int[] executeBatch(String[] sqls) {
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			conn = dbConn.getConnection();
+			stmt = conn.createStatement();
+			
+			for (int i = 0; i < sqls.length; i++) {
+				logger.debug(sqls[i]);
+				stmt.addBatch(sqls[i]);
+			}
+			
+			return stmt.executeBatch();
+		} catch (SQLException e) {
+			logger.debug("SQLExeption: " + e);
+			dbConn.rollbackTrans(conn);
+			e.printStackTrace();
+			
+			return null;
+		} finally {
+			dbConn.commitTrans(conn);
+			dbConn.closeStatement(stmt);
+			dbConn.closeConnection(conn);
+		}
+		
+	}
 }
