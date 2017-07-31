@@ -9,4 +9,12 @@ public class ParamUtil {
 		
 		return sdf.format(d);
 	}
+	
+	public static String getString(String str) {
+		if (str == null) {
+			return "";
+		}
+		
+		return str.trim();
+	}
 }
