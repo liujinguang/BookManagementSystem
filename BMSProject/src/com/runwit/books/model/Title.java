@@ -13,7 +13,12 @@ public class Title {
 		this.editionNumber = editionNumber;
 		this.copyright = copyright;
 		this.publisherId = publisherId;
-		this.imageFile = imageFile;
+		if (imageFile == null) {
+			this.imageFile = "default.jpg";
+		} else {
+			this.imageFile = imageFile;
+		}
+
 		this.price = price;
 	}
 
@@ -62,7 +67,11 @@ public class Title {
 	}
 
 	public void setImageFile(String imageFile) {
-		this.imageFile = imageFile;
+		if (imageFile == null) {
+			this.imageFile = "default.jpg";
+		} else {
+			this.imageFile = imageFile;
+		}
 	}
 
 	public float getPrice() {
@@ -87,6 +96,12 @@ public class Title {
 
 	public void setAuthorIds(int[] authorIds) {
 		this.authorIds = authorIds;
+	}
+
+	@Override
+	public String toString() {
+		return "isbn=" + isbn + ", title=" + title + ", editionNumber=" + editionNumber + ", copyright=" + copyright
+				+ ", publisherId=" + publisherId + ", imageFile=" + imageFile + ", price=" + price;
 	}
 
 	private String isbn;

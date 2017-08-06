@@ -17,4 +17,13 @@ public class ParamUtil {
 		
 		return str.trim();
 	}
+	
+	public static String appendParam(String url, String paramName, String paramValue) {
+		int index = url.indexOf('?');
+		if (index < 0) {
+			return url + "?" + paramName + "=" + paramValue;
+		} else {
+			return url + "&" + paramName + "=" + paramValue;
+		}
+	}
 }

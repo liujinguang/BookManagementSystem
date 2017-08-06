@@ -9,7 +9,7 @@ import java.sql.Statement;
 import org.apache.log4j.Logger;
 
 public class DbConnection {
-	private static String url = "jdbc:mysql://localhost:3306/db_bookms";
+	private static String url = "jdbc:mysql://localhost:3306/db_bookms?verifyServerCertificate=false&useSSL=false";
 	private static String user = "tester";
 	private static String password = "infinera";
 

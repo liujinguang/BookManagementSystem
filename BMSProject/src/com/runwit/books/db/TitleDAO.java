@@ -19,7 +19,7 @@ public class TitleDAO extends BaseDAO {
 	static Logger logger = Logger.getLogger(BaseDAO.class);
 
 	public void save(Title title) {
-		final String sql = "insert into title (isbn, title, editionNumber, copyright, publisherId, "
+		final String sql = "insert into titles (isbn, title, editionNumber, copyright, publisherId, "
 				+ "imageFile, price) values(?, ?, ?, ?, ?, ?, ?)";
 
 		executeInConnection(new IConnectionCreator() {
@@ -37,7 +37,7 @@ public class TitleDAO extends BaseDAO {
 
 				pstmt.executeUpdate();
 
-				String sql2 = "insert into authorIsbn(isbn, authorId) values (?, ?)";
+				String sql2 = "insert into authorisbn(isbn, id) values (?, ?)";
 				pstmt = conn.prepareStatement(sql2);
 
 				int[] aids = title.getAuthorIds();
@@ -127,7 +127,7 @@ public class TitleDAO extends BaseDAO {
 	}
 
 	public Title get(String isbn) {
-		String sql = "select t.*, name from titles t outer join publishers p on t.publisherId = p.id where isbn='"
+		String sql = "select t.*, name from titles t left outer join publishers p on t.publisherId = p.id where isbn='"
 				+ isbn + "'";
 		List<Title> titles = queryBySQL(sql, new TitleRowMapper());
 

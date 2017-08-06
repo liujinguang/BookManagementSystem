@@ -16,6 +16,7 @@
 	} else {
 		session.setAttribute("loginModel", user);
 		session.removeAttribute("errorMessage");
+		
 		response.sendRedirect(request.getContextPath() + "/authors/index.jsp");
 	}
 %>
