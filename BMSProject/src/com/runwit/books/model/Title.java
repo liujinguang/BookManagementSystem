@@ -101,7 +101,8 @@ public class Title {
 	@Override
 	public String toString() {
 		return "isbn=" + isbn + ", title=" + title + ", editionNumber=" + editionNumber + ", copyright=" + copyright
-				+ ", publisherId=" + publisherId + ", imageFile=" + imageFile + ", price=" + price;
+				+ ", publisherId=" + publisherId + ", imageFile=" + imageFile + ", price=" + price + ", authorIds="
+				+ authorIds;
 	}
 
 	private String isbn;

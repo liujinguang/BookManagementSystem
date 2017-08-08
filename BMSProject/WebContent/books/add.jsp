@@ -30,39 +30,14 @@ table select {
 	background: #DDDDFF;
 }
 </style>
-<script type="text/javascript">
-	function moveitem(fromSel, toSel) {
-		var fromOpts = fromSel.options;
-		var toOpts = toSel.options;
-		var idx = 0;
+<script type="text/javascript" src="../inc/main.js">
 
-		var toLen = toOpts.length;
-
-		for (var i = fromOpts.length - 1; i >= 0; i--) {
-			if (fromOpts[i].selected) {
-				toOpts[toLen + idx] = new Option(fromOpts[i].text,
-						fromOpts[i].value);
-				fromOpts[i] = null;
-				idx++;
-			}
-		}
-	}
-
-	function checkIsbn() {
-		if (form1.isbn.value == "") {
-			alert("请先输入ISBN");
-			form1.isbn().focus();
-			return;
-		}
-
-		window.open("checkIsbn.jsp?isbn=" + form1.isbn.value, 'checkwin',
-				'width=500,height=400,scrollbar=yes,resizable=no,status=yes')
-	}
 </script>
 </head>
 <body>
 	<%@ include file="../inc/head.jsp"%>
-	<form action="addDo.jsp" method="post" name="form1">
+	<form action="addDo.jsp" method="post" name="form1"
+		onsubmit="return checkBookForm(this)">
 		<table align="center" width="980">
 			<caption>添加新图书</caption>
 			<tr>
@@ -129,9 +104,8 @@ table select {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" class="tcolumn">
-				<input type="hidden" name="imageFile" value="default.jpg" >
-				<input
+				<td colspan="2" align="center" class="tcolumn"><input
+					type="hidden" name="imageFile" value="default.jpg"> <input
 					type="submit" value="增加"> <input type="reset" value="清空">
 				</td>
 			</tr>

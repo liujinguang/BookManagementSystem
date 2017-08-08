@@ -47,9 +47,12 @@ public class BaseDAO {
 	
 	public boolean executeInConnection(IConnectionCreator connCreator) {
 		Connection conn = null;
+		boolean oldAutoCommit = false;
 		
 		try {
 			conn = dbConn.getConnection();
+			oldAutoCommit = conn.getAutoCommit();
+			
 			conn.setAutoCommit(false);
 			
 			boolean res = connCreator.doInConnection(conn);
@@ -63,9 +66,14 @@ public class BaseDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			logger.debug("SQL Exception" + e);
+			logger.debug("SQL Exception " + e);
 			dbConn.rollbackTrans(conn);
 		} finally {
+			try {
+				conn.setAutoCommit(oldAutoCommit);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			dbConn.closeConnection(conn);
 		}
 		
@@ -166,10 +174,13 @@ public class BaseDAO {
 			conn = dbConn.getConnection();
 			stmt = conn.createStatement();
 			
+			
 			for (int i = 0; i < sqls.length; i++) {
 				logger.debug(sqls[i]);
 				stmt.addBatch(sqls[i]);
 			}
+			
+			conn.setAutoCommit(false);
 			
 			return stmt.executeBatch();
 		} catch (SQLException e) {

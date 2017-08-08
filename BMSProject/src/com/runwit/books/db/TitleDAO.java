@@ -21,6 +21,8 @@ public class TitleDAO extends BaseDAO {
 	public void save(Title title) {
 		final String sql = "insert into titles (isbn, title, editionNumber, copyright, publisherId, "
 				+ "imageFile, price) values(?, ?, ?, ?, ?, ?, ?)";
+		
+		System.out.println(title);
 
 		executeInConnection(new IConnectionCreator() {
 
@@ -73,18 +75,17 @@ public class TitleDAO extends BaseDAO {
 				pstmt.setFloat(6, title.getPrice());
 				pstmt.setString(7, title.getIsbn());
 
+				logger.debug(pstmt);
 				pstmt.executeUpdate();
 				pstmt.close();
-
-				logger.debug(sql);
 
 				// delete author's publish information
-				pstmt = conn.prepareStatement("delete from authorisbn where isbn=" + title.getIsbn());
+				pstmt = conn.prepareStatement("delete from authorisbn where isbn=?");
+				pstmt.setString(1, title.getIsbn());
 				pstmt.executeUpdate();
 				pstmt.close();
 
-				String sql2 = "insert into authorisbn (isbn, id) values (?, ?)";
-				pstmt = conn.prepareStatement(sql2);
+				pstmt = conn.prepareStatement("insert into authorisbn (isbn, id) values (?, ?)");
 				int[] aids = title.getAuthorIds();
 				if (aids != null) {
 					for (int i = 0; i < aids.length; i++) {
@@ -93,10 +94,11 @@ public class TitleDAO extends BaseDAO {
 						pstmt.setInt(2, aid);
 						pstmt.addBatch();
 
-						logger.debug(sql2);
+						logger.debug(pstmt);
 					}
 					pstmt.executeBatch();
 				}
+				pstmt.close();
 
 				return true;
 			}
@@ -118,7 +120,7 @@ public class TitleDAO extends BaseDAO {
 			sql += " where title like \"%" + title + "%\"";
 		} else if (!isbn.equals("")) {
 			sql = "select t.*, p.name from titles t left outer join publishers p on t.publisherId = p.id";
-			sql += " where isbn like \"%" + isbn + "%\"";	
+			sql += " where isbn like \"%" + isbn + "%\"";
 		} else {
 			return new ArrayList<Title>();
 		}
@@ -150,17 +152,18 @@ public class TitleDAO extends BaseDAO {
 				return rs.getInt(1);
 			}
 		});
+
 		return list.toArray(new Integer[0]);
 	}
 
 	public List<Author> getAuthorModelsByIsbn(String isbn) {
-		String sql = "select authors.* from authors, authorisbn where authors.authorid=authorisbn.authorid and authorisbn.isbn='"
+		String sql = "select authors.* from authors, authorisbn where authors.id=authorisbn.id and authorisbn.isbn='"
 				+ isbn + "'";
 		List<Author> myList = queryBySQL(sql, new IRowMapper<Author>() {
 
 			@Override
 			public Author mappingRow(ResultSet rs) throws SQLException {
-				Author model = new Author(rs.getInt("authorid"), rs.getString("firstName"), rs.getString("lastName"));
+				Author model = new Author(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"));
 				return model;
 			}
 		});
